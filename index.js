@@ -9,7 +9,6 @@
 
     app.use(bodyParser.json());
     app.use(express.static(__dirname + '/public'));
-    app.use(express.static(__dirname + '/resources'));
 
     const assistant = new  watson({
         username: watsonAuth.username,
@@ -20,9 +19,6 @@
 
     app.get('/', function (req, res) {
         return res.sendFile('./public/index.html');
-    });
-    app.get('/', function (req, res) {
-        return res.sendFile('./resources/style.css');
     });
 
     app.post('/dialog', (req, res) => {

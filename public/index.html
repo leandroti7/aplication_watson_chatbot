@@ -8,42 +8,135 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css?family=Lato');
-        .chat * {
+        @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+        * {
+            margin: 0;
+            border: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        header{
+            background:blueviolet ;
+            font-size: 35px;
+            color: aliceblue;
+            padding: 10px;
+            /*margin-bottom: 10px;*/
+            box-shadow: 0px 5px 4px #888;
+        }
+
+        .content-anuncio{
+            background: linear-gradient(73deg, #ffdffd, #e8ffec, #ffeaf6);
+            display: block;
+            margin: auto;
+            padding: 0 5%;
+            box-shadow: 1px 1px 8px #ccc;
+        }
+        
+        h1{
+            text-align: center;
+            font-weight: bold;
+            /*background: rgba(0,0,0,.2);*/
+            padding: 15px 0px;
+            font-size:  20px;
+        }
+
+        h2{
+            font-weight: normal;
+            text-align: left;
+            width: 400px;
+            font-size: 16px;
+        }
+
+        .product{
+            background: linear-gradient(to right, rgba(0,0,0,.0), rgba(0,0,0,.2), rgba(0,0,0,.0));
+            margin: 20px 0px;
+            width: 75%;
+            display: block;
+            position: relative;
+        }
+
+        .product h3{
+            padding: 10px 0px;
+        }
+
+        .product p{
+            font-size: 14px;
+            position: relative;
+            display: block;
+        }
+
+        .btn-purple{
+            padding: 5px 10px;
+            font-size: 18px;
+            font-weight: bolder;
+            background: purple;
+            color: #abef07;
+            margin: 5px 20px;
+        }
+
+        .content-chat{
+            display: none;
+        }
+
+        .content-chat.show{
+            /*background: aqua;*/
+            /*padding: 5px;*/
+            width: 300px;
+            max-width: 500px;
+            position: fixed;
+            bottom: 10px;
+            right: 5px;
+            display: block;
+            overflow-y: auto;
+            box-shadow: 1px 4px 8px #ccc;
+        }
+
+        .content-chat .chat * {
             margin: 0;
             border: 0;
             padding: 0;
             font: inherit;
+
         }
-        .chat {
+        .content-chat .chat {
             font-family: 'Lato', sans-serif;
             font-size: 16px;
         }
-        .chat header {
+        .content-chat .chat header {
             font-weight: bold;
             padding: 10px 20px;
             background-color: #354b51;
             color: white;
+            border-radius: 5px 5px 0px 0px;
         }
-        .chat section {
-            padding: 10px 20px;
-            background-color: #b6b6b7;
+        .content-chat .chat section {
+            padding: 10px 20px 100px 20px;
+            background-color: #def1ff;
             color: white;
             display: flex;
             flex-direction: column;
+            height: 250px;
+            min-height: 250px;
+            overflow-y: auto;
+            border-radius: 0px 0px 5px 5px;
         }
-        .chat section * {
+        .content-chat .chat section * {
             border-radius: 10px;
         }
-        .chat section .message {
+        .content-chat .chat section .load {
+            margin-bottom: 150px;
+        }
+        .content-chat .chat section .message {
             padding: 10px;
             border-left: 3px solid #354b51;
             background-color: rgba(255, 255, 255, 0.7);
             color: #354b51;
             margin-bottom: 5px;
-            width: 80%;
+            /*width: 80%;*/
         }
 
-        .chat section .message.me {
+        .content-chat .chat section .message.me {
             padding: 20px;
             border: none;
             border-bottom: 3px solid #e63241;
@@ -52,26 +145,71 @@
             color: #354b51;
             align-self: flex-end;
         }
-        .chat section .message p {
+        .content-chat .chat section .message p {
             padding-bottom: 10px;
         }
-        .chat textarea {
-            padding: 20px;
-            border: 2px solid #3a3535;
+        .content-chat .chat textarea {
+            padding: 10px;
+            border: 1px solid #3a3535;
+            position: fixed;
+            bottom: 25px;
+            /*width: 265px*/
         }
-        .chat textarea:focus {
+
+        .content-chat .chat button{
+            position: fixed;
+            bottom: 25px;
+            font-weight: bold;
+            border-bottom: 3px solid #686ca9;
+            border-top: 3px solid #686ca9;
+            background: #27216f;
+            right: 15px;
+            padding: 18px 15px;
+            /*width: 90px;*/
+            cursor: pointer;
+            color: #93d2ef;
+        }
+        .content-chat .chat textarea:focus {
             outline: none;
             border: 2px solid #93d2ef;
         }
     </style>
 </head>
 <body>
+<header>Grape Juice</header>
+<section class="content-anuncio">
+    <h1>Interact with us IA sending message and response imediate now</h1>
+
+    <h2>
+        It's now technologic that will be success in all word of information, chabots learnig for interaction with users
+        that are wanted the product.
+    </h2>
+
+    <div class="product">
+        <h3>Grape Juice </h3>
+
+        <p class="description-product">
+            Grape juice full natural and excelent for peoples with strongs headches,
+            we juice don't contains any type of preservatives.
+        </p>
+
+        <span>For only</span>
+        <div class="price">
+            $ 6,00
+        </div>
+    </div>
+</section>
 <div id="app">
-    <app class="chat"></app>
+    <div class="content-chat">
+        <app class="chat"></app>
+    </div>
 </div>
+<button class="btn-purple" id="btnShow">Mostrar</button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-scrollto"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
     Vue.component('app', {
         data() {
@@ -96,10 +234,11 @@
         template: `<div>
                     <header>Chatbot</header>
                     <main>
-                        <section>
+                        <section id="container">
                             <div class="message" v-for="m in messages" :class="{ me: m.me }" v-html="$options.filters.messageFormat(m.text)"></div>
-                            <img src="https://loading.io/spinners/message/lg.messenger-typing-preloader.gif" v-if="loading" style="width: 50px"/>
-                            <textarea :disabled="loading" placeholder="Envie uma mensagem..." @keypress.enter.prevent="sendMessage" v-model="message"></textarea>
+                            <img class="load" src="https://loading.io/spinners/message/lg.messenger-typing-preloader.gif" v-if="loading" style="width: 50px"/>
+                            <textarea :disabled="loading"  placeholder="Envie uma mensagem..." @keypress.enter.prevent="sendMessage" v-model="message"></textarea>
+                            <button v-on:click="sendMessage">Enviar</button>
                         </section>
                     </main>
                    </div>`,
@@ -109,6 +248,7 @@
                     me: true,
                     text: this.message
                 })
+
                 const data = {
                     message: this.message
                 }
@@ -120,7 +260,12 @@
                         text: response.data
                     })
                     this.loading = false;
+                    this.scrollToEnd();
                 })
+            },
+            scrollToEnd() {
+                var container = this.$el.querySelector(".content-chat .chat section");
+                container.scrollTop = container.scrollHeight;
             }
         },
         filters: {
@@ -140,6 +285,14 @@
     });
     new Vue({
         el: '#app',
+    })
+</script>
+
+<script>
+    $(document).ready( function () {
+        $('#btnShow').on('click',function () {
+            $('.content-chat').toggleClass('show');
+        })
     })
 </script>
 </body>
